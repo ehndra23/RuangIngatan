@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f3efe7">
+  <title>Ruang Ingatan — Personal Writing Studio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <div class="brand">
+        <div class="brand-mark">ri.</div>
+        <div><div class="brand-name">ruang ingatan</div><div class="brand-subtitle">PERSONAL WRITING STUDIO</div></div>
+      </div>
+
+      <button class="new-work-button" id="newWorkBtn"><span>＋</span> Tulis sesuatu</button>
+
+      <div class="nav-label">RUANG KERJA</div>
+      <nav class="main-nav">
+        <button class="nav-item active" data-view="dashboard"><span class="nav-icon">⌂</span> Dashboard</button>
+        <button class="nav-item" data-view="all"><span class="nav-icon">▤</span> Semua tulisan <span class="nav-count" id="allCount">0</span></button>
+        <button class="nav-item" data-view="slides"><span class="nav-icon">▧</span> Studio Instagram</button>
+      </nav>
+
+      <div class="nav-label category-label">KATEGORI</div>
+      <nav class="category-nav">
+        <button class="category-item" data-category="Memori"><i class="dot dot-sand"></i> Memori</button>
+        <button class="category-item" data-category="Refleksi"><i class="dot dot-olive"></i> Refleksi</button>
+        <button class="category-item" data-category="Kehidupan"><i class="dot dot-brown"></i> Kehidupan</button>
+        <button class="category-item" data-category="Manusia"><i class="dot dot-grey"></i> Manusia</button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="quote-card">
+          <span class="quote-mark">“</span>
+          <p>Setiap ingatan punya tempat. Setiap perasaan punya cerita.</p>
+          <span class="quote-caption">CATATAN KECIL</span>
+        </div>
+        <div class="profile">
+          <div class="avatar">P</div>
+          <div><strong>Penulis</strong><small>Ruang pribadi</small></div>
+          <span class="profile-dots">···</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-area">
+      <header class="topbar">
+        <div class="breadcrumb"><span>Ruang kerja</span><b>/</b><strong id="breadcrumbCurrent">Dashboard</strong></div>
+        <div class="topbar-right"><span class="save-indicator"><i></i> Tersimpan di perangkat ini</span><button class="icon-button mobile-menu" id="menuBtn" aria-label="Buka menu">☰</button></div>
+      </header>
+
+      <section class="view active" id="dashboardView">
+        <div class="page-heading">
+          <div><div class="eyebrow">KAMIS, 12 NOVEMBER 2026</div><h1>Selamat datang di<br><em>ruangmu sendiri.</em></h1><p class="intro">Tempat menyimpan hal-hal yang pernah dirasakan, dipikirkan, dan ingin diceritakan.</p></div>
+          <div class="heading-stamp"><span>RI</span><small>EST. 2026</small></div>
+        </div>
+        <div class="stats-row">
+          <div class="stat-card"><span class="stat-label">TOTAL TULISAN</span><strong id="statTotal">0</strong><small>Semua cerita yang tersimpan</small></div>
+          <div class="stat-card"><span class="stat-label">MASIH DRAFT</span><strong id="statDraft">0</strong><small>Ide yang bisa dikembangkan</small></div>
+          <div class="stat-card"><span class="stat-label">SLIDE INSTAGRAM</span><strong id="statSlides">0</strong><small>Potongan cerita visual</small></div>
+        </div>
+        <div class="section-heading"><div><span class="eyebrow">RUANG KREATIF</span><h2>Mulai dari mana hari ini?</h2></div></div>
+        <div class="quick-grid">
+          <button class="quick-card" id="quickWrite"><span class="quick-icon">✎</span><strong>Tulis cerita baru</strong><small>Mulai dari satu kalimat yang muncul di kepala.</small><span class="quick-arrow">↗</span></button>
+          <button class="quick-card" id="quickSlides"><span class="quick-icon">▧</span><strong>Susun carousel</strong><small>Ubah tulisan menjadi rangkaian slide Instagram.</small><span class="quick-arrow">↗</span></button>
+          <button class="quick-card" id="quickArchive"><span class="quick-icon">▤</span><strong>Buka arsip</strong><small>Kembali membaca tulisan yang pernah dibuat.</small><span class="quick-arrow">↗</span></button>
+        </div>
+        <div class="section-heading recent-heading"><div><span class="eyebrow">JEJAK TERAKHIR</span><h2>Tulisan terbaru</h2></div><button class="text-button" data-go="all">Lihat semua →</button></div>
+        <div class="work-list" id="recentList"></div>
+      </section>
+
+      <section class="view" id="allView">
+        <div class="list-heading"><div><span class="eyebrow">ARSIP KARYA</span><h1>Semua tulisan</h1><p class="intro">Kumpulan ide, catatan, dan cerita yang sedang tumbuh.</p></div><button class="primary-button" id="allNewBtn">＋ Tulisan baru</button></div>
+        <div class="toolbar"><label class="search-box">⌕ <input id="searchInput" placeholder="Cari judul atau isi tulisan..."></label><select id="statusFilter"><option value="all">Semua status</option><option value="Draft">Draft</option><option value="Selesai">Selesai</option></select></div>
+        <div class="work-list archive-list" id="allList"></div>
+      </section>
+
+      <section class="view" id="editorView">
+        <div class="editor-topline"><button class="back-button" id="backToList">← Kembali</button><div class="editor-actions"><span class="autosave-label" id="autosaveLabel">Perubahan tersimpan otomatis</span><button class="secondary-button" id="deleteWorkBtn">Hapus</button><button class="primary-button" id="finishWorkBtn">Tandai selesai</button></div></div>
+        <div class="editor-layout">
+          <div class="writing-panel">
+            <div class="editor-meta"><span class="eyebrow">RUANG MENULIS / NASKAH</span><span class="draft-pill" id="editorStatus">DRAFT</span></div>
+            <input class="title-input" id="titleInput" placeholder="Beri judul pada tulisanmu..." maxlength="100">
+            <div class="meta-fields"><select id="categoryInput"><option>Memori</option><option>Refleksi</option><option>Kehidupan</option><option>Manusia</option><option>Lainnya</option></select><span class="word-count" id="wordCount">0 kata</span></div>
+            <textarea class="body-input" id="bodyInput" placeholder="Mulailah dari mana saja. Tidak harus sempurna, tidak harus langsung indah.&#10;&#10;Tuliskan apa yang sedang kamu pikirkan..."></textarea>
+            <div class="editor-footer"><span>✧ Tidak ada aturan untuk memulai.</span><span id="updatedAt">Draft baru</span></div>
+          </div>
+          <aside class="preview-panel">
+            <div class="preview-heading"><div><span class="eyebrow">LIVE PREVIEW</span><h3>Pratinjau tulisan</h3></div><span class="preview-dot"></span></div>
+            <div class="paper-preview"><div class="paper-top">RUANG INGATAN <span>CATATAN</span></div><div class="paper-rule"></div><h2 id="previewTitle">Judul tulisanmu</h2><p id="previewBody">Tulisanmu akan muncul di sini. Berikan ruang bagi pikiranmu untuk mengalir.</p><div class="paper-bottom"><span id="previewCategory">MEMORI</span><span>— RI.</span></div></div>
+            <div class="preview-note">Pratinjau ini membantu melihat suasana tulisan. Tampilan akhir Instagram bisa disusun di Studio Instagram.</div>
+            <button class="outline-button full-button" id="openSlidesFromEditor">Buka Studio Instagram ↗</button>
+          </aside>
+        </div>
+      </section>
+
+      <section class="view" id="slidesView">
+        <div class="list-heading"><div><span class="eyebrow">INSTAGRAM WRITING STUDIO</span><h1>Studio carousel</h1><p class="intro">Pecah tulisan menjadi slide yang nyaman dibaca.</p></div><button class="primary-button" id="addSlideWorkBtn">＋ Pilih tulisan</button></div>
+        <div class="slides-workspace">
+          <div class="slides-controls">
+            <label class="field-label">PILIH TULISAN<select id="slideWorkSelect"></select></label>
+            <label class="field-label">JUDUL DI SLIDE PERTAMA<input id="slideCoverTitle" placeholder="Judul carousel"></label>
+            <div class="slide-help">Pisahkan bagian tulisan dengan tombol di bawah. Setiap bagian akan menjadi satu slide.</div>
+            <div class="background-controls">
+              <div class="background-controls-title">LATAR SLIDE AKTIF</div>
+              <label class="field-label">JENIS LATAR<select id="slideBgMode"><option value="solid">Warna solid</option><option value="gradient">Gradient</option></select></label>
+              <div class="background-color-row">
+                <label class="field-label">WARNA UTAMA<input type="color" id="slideBgColor" value="#292824"></label>
+                <label class="field-label" id="slideBgColor2Wrap">WARNA KEDUA<input type="color" id="slideBgColor2" value="#665747"></label>
+              </div>
+              <div class="background-presets">
+                <button type="button" data-bg-preset="dark">Gelap</button>
+                <button type="button" data-bg-preset="cream">Cream</button>
+                <button type="button" data-bg-preset="brown">Cokelat</button>
+                <button type="button" data-bg-preset="olive">Olive</button>
+              </div>
+              <small class="background-hint">Pengaturan latar disimpan bersama susunan slide.</small>
+            </div>
+            <div id="slideEditors" class="slide-editors"></div>
+            <button class="outline-button full-button" id="addSlideBtn">＋ Tambah slide</button>
+            <button class="primary-button full-button" id="saveSlidesBtn">Simpan susunan slide</button>
+            <button class="primary-button full-button" id="exportCurrentPngBtn">Unduh slide ini (PNG)</button>
+            <button class="outline-button full-button" id="exportAllPngBtn">Unduh semua slide (PNG)</button>
+            <button class="secondary-button full-button" id="exportSlidesBtn">Unduh teks slide (.txt)</button>
+          </div>
+          <div class="carousel-preview-area">
+            <div class="carousel-preview-top"><span class="eyebrow">PREVIEW CAROUSEL</span><span id="slideCounter">SLIDE 1 / 1</span></div>
+            <div class="carousel-card" id="carouselCard"><div class="carousel-brand" id="carouselBrand">RUANG INGATAN <span>CATATAN KECIL</span></div><div class="carousel-content" id="carouselContent">Tulisanmu akan hadir di sini.</div><div class="carousel-footer" id="carouselFooter"><span id="carouselCategory">REFLEKSI</span><span id="carouselNumber">01 / 01</span></div></div>
+            <div class="carousel-navigation"><button id="prevSlide" aria-label="Slide sebelumnya">←</button><span id="carouselPosition">1 dari 1</span><button id="nextSlide" aria-label="Slide berikutnya">→</button></div>
+            <p class="preview-note">PNG berukuran 1080 × 1350 px. Unduh satu slide atau seluruh carousel; pastikan susunan tersimpan sebelum meninggalkan halaman.</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="app-footer"><span>RUANG INGATAN © 2026</span><span>Dibuat untuk hal-hal yang ingin diingat.</span></footer>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="js/storage.js"></script>
+  <script src="js/editor.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
